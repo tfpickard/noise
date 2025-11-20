@@ -1,0 +1,17 @@
+:root {
+  color-scheme: dark;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Inter", sans-serif;
+  margin: 0;
+  background: radial-gradient(circle at 20% 20%, #0f172a, #020617 45%);
+}
+
+.offline-card {
+  container-type: inline-size;
+}
+
+.offline-card:has(button:hover) {
+  outline: 1px solid color-mix(in srgb, #22d3ee 40%, transparent);
+}

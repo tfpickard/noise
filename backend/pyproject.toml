@@ -1,0 +1,22 @@
+[project]
+name = "visual-noise-museum-backend"
+version = "0.1.0"
+description = "FastAPI backend for Visual Noise Museum"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.115.0",
+    "pydantic>=2.9.0",
+    "uvicorn>=0.31.0",
+    "structlog>=24.4.0",
+]
+
+[tool.uv]
+index-url = "https://pypi.org/simple"
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
