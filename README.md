@@ -5,14 +5,22 @@ This repository provides a dual-stack prototype for the Visual Noise Museum. It 
 ## Backend
 
 - FastAPI app in `backend/app/main.py` exposes REST endpoints under `/api/v1/` with health probes at `/health` and `/readiness`.
-- In-memory store stands in for PostgreSQL/Redis so the API is runnable without external services.
+- Async SQLAlchemy models target PostgreSQL 16+ with pgvector (see `backend/app/models/` and the Alembic migration in `backend/alembic/versions`).
+- Redis powers caching and rate limiting; see `app/api/deps.py` for the sliding window guard.
 - Pydantic v2 schemas live in `backend/app/schemas/`, and routers in `backend/app/api/v1/` mirror the required surface (patterns, collections, analytics, similarity, sessions, exports, auth, and collaboration websocket).
-- Structured logging via `structlog`; configure settings through `app/core/config.py`.
+- Structured logging with correlation IDs via `structlog`; configure settings through `app/core/config.py`.
 
 ### Running
 
 ```bash
 cd backend
+# install deps
+uv sync
+
+# run migrations
+DATABASE_URL=postgresql+asyncpg://noise:noise@localhost:5432/noise uv run alembic upgrade head
+
+# start API
 uv run uvicorn app.main:app --reload --port 8000
 ```
 
@@ -34,6 +42,10 @@ bun run dev
 
 - Patterns save immediately to localStorage via IndexedDB-friendly helpers and sync to the backend when connectivity is restored.
 - Collaboration and similarity features are stubbed to gracefully degrade when offline; WebSocket endpoints echo payloads for local testing.
+
+## Production checklist
+
+- See `ROADMAP_PROGRESS.md` for the actively maintained production checklist and feature status.
 
 ## Production readiness roadmap
 
