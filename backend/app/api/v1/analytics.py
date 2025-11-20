@@ -147,7 +147,7 @@ async def get_trends(
 async def track_event(
     event_type: str,
     pattern_id: str | None = None,
-    metadata: dict | None = None,
+    event_metadata: dict | None = None,
     db: DatabaseSession = None,
 ) -> dict:
     """Track analytics event."""

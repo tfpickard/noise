@@ -23,7 +23,7 @@ class AnalyticsEvent(Base):
     )
     user_id: Mapped[UUID | None] = mapped_column(ForeignKey("users.id", ondelete="SET NULL"))
     session_id: Mapped[str | None] = mapped_column(String(100))
-    metadata: Mapped[dict[str, Any] | None] = mapped_column(JSONB)
+    event_metadata: Mapped[dict[str, Any] | None] = mapped_column(JSONB)
     created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow, index=True)
 
     __table_args__ = (

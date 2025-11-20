@@ -13,7 +13,7 @@ class AnalyticsEventCreate(BaseModel):
     event_type: str = Field(..., min_length=1, max_length=50)
     pattern_id: UUID | None = None
     session_id: str | None = None
-    metadata: dict[str, Any] | None = None
+    event_metadata: dict[str, Any] | None = None
 
 
 class AnalyticsEvent(AnalyticsEventCreate):
