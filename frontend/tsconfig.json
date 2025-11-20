@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ES2023"],
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": false,
+    "jsx": "preserve",
+    "strict": true,
+    "noEmit": true,
+    "types": ["web", "webgpu"]
+  },
+  "include": ["app/**/*", "components/**/*", "lib/**/*", "workers/**/*"],
+  "exclude": ["node_modules"]
+}
